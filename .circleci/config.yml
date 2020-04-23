@@ -1,0 +1,11 @@
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@6.8.2
+workflows:
+  build_and_push_image:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          create-repo: true
+          dockerfile: Dockerfile
+          repo: my-ruby
+          tag: 'latest,$CIRCLE_SHA1'
